@@ -1,0 +1,101 @@
+<div class="carousel-wrapper">
+  <h2 class="eventos-destaques-title">Eventos em Destaque</h2>
+
+  <button
+    class="carousel-btn left"
+    (click)="prevSlide()"
+    [disabled]="isPrevDisabled()"
+  >
+    <img class="seta-img" src="../seta-esquerda.png" alt="Voltar" />
+  </button>
+
+  <div class="carousel-container" *ngIf="!isLoading">
+    <div
+      class="carousel"
+      [ngStyle]="{
+        transform: 'translateX(' + -currentIndex * cardWidthPercentage + '%)'
+      }"
+      [attr.data-visible-cards]="visibleCards"
+    >
+      <ng-container *ngFor="let evento of eventos">
+        <div class="evento-card">
+          <div class="evento-header">
+            <img
+              [src]="
+                evento.usuarioImagem
+                  ? 'data:image/jpeg;base64,' + evento.usuarioImagem
+                  : './../../../../../../pngPadrao-NaoLogado.png'
+              "
+              [alt]="evento.usuarioNome"
+              class="profile-image"
+              [routerLink]="['/perfil', evento.usuarioParceiroid]"
+            />
+            <h1
+              class="userName"
+              [routerLink]="['/perfil', evento.usuarioParceiroid]"
+            >
+              {{ evento.usuarioNome }}
+              <img
+                *ngIf="evento.isCreatorPartner"
+                src="verificadoParceiro.png"
+                alt="Parceiro Verificado"
+                class="partner-icon-small"
+                title="Parceiro Verificado"
+              />
+            </h1>
+          </div>
+
+          <img
+            [src]="
+              evento.eventoImagem && evento.eventoImagem.length > 0
+                ? 'data:image/jpeg;base64,' + evento.eventoImagem[0]
+                : 'ConnectMataoIcon.png'
+            "
+            [alt]="evento.titulo"
+            class="evento-img"
+            [routerLink]="['/detalhe-evento/', evento.id]"
+          />
+
+          <div class="info">
+            <h3 class="single-line">{{ evento.titulo }}</h3>
+            <p class="single-line">{{ evento.descricao }}</p>
+          </div>
+
+          <div class="detalhes">
+            <div class="detalhe-item">
+              <img
+                src="../calendario.png"
+                alt="Data do evento"
+                class="detalhe-icon"
+              />
+              <span>
+                <i class="fa-solid fa-calendar"></i>
+                {{ evento.data | date : "dd/MM/yyyy" }}
+              </span>
+            </div>
+            <div class="detalhe-item">
+              <img
+                src="../relogio.png"
+                alt="Horário do evento"
+                class="detalhe-icon"
+              />
+              <span>
+                <i class="fa-solid fa-clock"></i> {{ evento.horario }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <button
+    class="carousel-btn right"
+    (click)="nextSlide()"
+    [disabled]="isNextDisabled()"
+  >
+    <img class="seta-img" src="../seta-direita.png" alt="Avançar" />
+  </button>
+</div>
+
+<mat-spinner *ngIf="isLoading" class="spinner-overlay"></mat-spinner>

@@ -1,0 +1,73 @@
+<div class="feed-container">
+  <div
+    *ngIf="
+      !isLoading &&
+      eventos.length === 0 &&
+      categoriaSelecionada !== null &&
+      !termoPesquisa
+    "
+    class="mensagem-vazia"
+  >
+    <p>Não há eventos publicados com essa categoria.</p>
+  </div>
+  <div
+    *ngIf="!isLoading && eventos.length === 0 && termoPesquisa !== null"
+    class="mensagem-vazia"
+  >
+    <p>Não foram encontrados eventos com o título "{{ termoPesquisa }}".</p>
+  </div>
+
+  <div *ngFor="let evento of eventos" class="evento-card">
+    <div class="evento-header">
+      <img
+        [src]="
+          evento.usuarioImagem && evento.usuarioImagem.length > 0
+            ? 'data:image/jpeg;base64,' + evento.usuarioImagem
+            : './../../../../../../pngPadrao-NaoLogado.png'
+        "
+        [alt]="evento.usuarioNome"
+        class="profile-image"
+        [routerLink]="['/perfil', evento.usuarioParceiroid]"
+      />
+      <h1 class="userName" [routerLink]="['/perfil', evento.usuarioParceiroid]">
+        {{ evento.usuarioNome }}
+        <img
+          *ngIf="evento.isCreatorPartner"
+          src="./../../../../../../verificadoParceiro.png"
+          alt="Parceiro Verificado"
+          class="partner-icon-feed"
+          title="Parceiro Verificado"
+        />
+      </h1>
+    </div>
+
+    <img
+      [src]="
+        evento.eventoImagem && evento.eventoImagem.length > 0
+          ? 'data:image/jpeg;base64,' + evento.eventoImagem[0]
+          : 'ConnectMataoIcon.png'
+      "
+      [alt]="evento.titulo"
+      class="evento-img"
+      [routerLink]="['/detalhe-evento/', evento.id]"
+    />
+
+    <div class="info">
+      <h3>{{ evento.titulo }}</h3>
+      <p>{{ evento.descricao }}</p>
+    </div>
+
+    <div class="detalhes">
+      <div class="detalhe-item">
+        <img src="../calendario.png" alt="Data" class="detalhe-icon" />
+        <span>{{ evento.data | date : "dd/MM/yyyy" }}</span>
+      </div>
+      <div class="detalhe-item">
+        <img src="../relogio.png" alt="Horário" class="detalhe-icon" />
+        <span>{{ evento.horario }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-spinner *ngIf="showLoadingSpinner" class="spinner-overlay"></mat-spinner>

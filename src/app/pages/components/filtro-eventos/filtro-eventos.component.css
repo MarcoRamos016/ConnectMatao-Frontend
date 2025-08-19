@@ -1,0 +1,125 @@
+.filter {
+  color: #beb5b5;
+  text-decoration: none;
+  margin-top: 30vh;
+  font-size: 20px;
+  display: flex;
+  justify-content: end;
+  padding-right: 10px;
+}
+
+.txt-filter {
+  font-size: 20px;
+  margin: 25px;
+  font-family: "Instrument Sans", serif;
+}
+
+.btn-filter {
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos para o modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+}
+
+.modal-content {
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  color: #20acf2;
+  font-size: 26px;
+  padding: 20px;
+  text-align: center;
+}
+
+.modal-content label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.modal-content select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 100px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.modal-content .button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modal-content .btn-clear,
+.modal-content .btn-apply {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.modal-content .btn-clear {
+  background: #f44336;
+  color: white;
+  transition: 300ms;
+}
+
+.modal-content .btn-apply {
+  background: #20acf2;
+  color: white;
+  transition: 300ms;
+}
+
+.modal-content .btn-clear:hover {
+  background: #b62218;
+  color: white;
+}
+
+.modal-content .btn-apply:hover {
+  background: #157eb3;
+  color: white;
+}
+
+.modal-content .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.open-modal-btn {
+  padding: 10px 15px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 1224px) {
+  .filter {
+    margin-top: 20vh;
+  }
+}

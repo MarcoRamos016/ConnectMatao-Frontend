@@ -1,0 +1,295 @@
+.carousel-wrapper {
+  position: relative;
+  width: 80%;
+  margin: 50px auto;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f3f0f0;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.eventos-destaques-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #20acf2;
+  text-align: justify;
+  margin-left: 20px;
+  padding-left: 0;
+}
+
+.single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  z-index: 2222;
+  background: none;
+  font-size: 1.2em;
+  color: #000000;
+  background-color: rgba(243, 243, 243, 0.5);
+  border-radius: 5px;
+}
+
+.carousel-btn.left {
+  left: -70px;
+}
+
+.carousel-btn.right {
+  right: -90px;
+}
+
+.carousel-btn img {
+  width: 26px;
+  height: 26px;
+}
+
+.carousel-btn:hover:enabled {
+  background: rgba(226, 224, 224, 0.3);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.evento-card {
+  flex: 0 0 calc(100% / 3);
+  margin: 0px;
+  background: #f3f0f0;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 4px;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+.evento-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.evento-header {
+  background: #1f1f1f;
+  color: white;
+  padding: 5px;
+  text-align: left;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.evento-header .profile-image {
+  max-width: 40px;
+  margin-left: 5px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.userName {
+  font-size: 16px;
+  margin: 5px;
+  font-weight: 200;
+  text-decoration: none;
+  color: white;
+}
+
+.userName:hover {
+  text-decoration: underline;
+}
+
+.spinner-overlay {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.info {
+  background: #20acf2;
+  padding: 10px;
+  color: white;
+  text-align: left;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  overflow: hidden;
+}
+
+.info h3 {
+  margin: 0;
+  font-size: 18px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.info h3.single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info p {
+  font-size: 12px;
+  margin: 5px 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.info p.single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detalhes {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 8px;
+  background: #1f1f1f;
+  color: white;
+  flex-shrink: 0;
+}
+
+.detalhe-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.detalhe-item img {
+  width: 20px;
+  height: 20px;
+}
+
+.evento-header .partner-icon-small {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+@media (max-width: 1024px) {
+  .evento-card {
+    flex: 0 0 calc(50% - 20px);
+    margin: 5px;
+  }
+
+  .carousel-wrapper {
+    width: 90%;
+  }
+
+  .carousel-btn.left {
+    left: -5px;
+  }
+
+  .carousel-btn.right {
+    right: -10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .evento-card {
+    flex: 0 0 calc(100% - 20px);
+    margin: 10px;
+  }
+
+  .carousel-btn {
+    display: block;
+  }
+
+  .carousel-wrapper {
+    width: 95%;
+    margin: 30px auto;
+  }
+
+  .carousel-btn.left {
+    left: 10px;
+  }
+
+  .carousel-btn.right {
+    right: 10px;
+  }
+
+  .eventos-destaques-title {
+    font-size: 28px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-btn.left {
+    left: 5px;
+  }
+
+  .carousel-btn.right {
+    right: 5px;
+  }
+
+  .carousel-container {
+    padding: 10px;
+  }
+
+  .evento-card {
+    margin: 9px;
+  }
+
+  .info h3 {
+    font-size: 16px;
+  }
+
+  .info p {
+    font-size: 11px;
+  }
+
+  .detalhes {
+    font-size: 12px;
+    padding: 6px;
+  }
+}

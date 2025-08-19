@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  background-color: #f5f5f5;
+  padding: 20px;
+  margin-top: 200px;
+  zoom: 80%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column; /* Mobile: azul em cima */
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  width: 90%;
+  overflow: hidden;
+}
+
+/* Painel azul (topo em mobile) */
+.left-panel {
+  background-color: #20a2f2;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.msg-left-card {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.logo-site {
+  max-width: 180px;
+  border-radius: 50%;
+  background-color: white;
+  height: auto;
+}
+
+/* Painel do formulário (embaixo em mobile) */
+.right-panel {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title-card {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #20a2f2;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Centralizando o botão de submit */
+button[type="submit"] {
+  margin: 20px auto;
+  width: 300px;
+  height: 40px;
+  color: #ffffff;
+  padding: 12px;
+  background-color: #2196f3;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: block;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+p {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+a {
+  color: #20a2f2;
+  text-decoration: none;
+}
+
+/* Responsivo para telas maiores */
+@media (min-width: 769px) {
+  .card {
+    flex-direction: row; /* Azul à esquerda, formulário à direita */
+  }
+
+  .left-panel,
+  .right-panel {
+    flex: 1;
+    padding: 40px;
+  }
+}

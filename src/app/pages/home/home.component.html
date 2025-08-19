@@ -1,0 +1,9 @@
+<app-filtro-eventos
+  (filterChanged)="onCategoriaChange($event)"
+></app-filtro-eventos>
+
+<app-card-eventos></app-card-eventos>
+
+<app-feed-eventos
+  [categoriaSelecionada]="categoriaSelecionada"
+></app-feed-eventos>

@@ -1,0 +1,154 @@
+.alterar-senha-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  margin-top: 200px;
+  font-family: "Arial", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 34px;
+  font-weight: 600;
+  color: #20acf2;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease;
+  padding-right: 50px;
+}
+
+input[type="password"]:focus,
+input[type="text"]:focus {
+  border-color: #20acf2;
+  outline: none;
+  background-color: #fff;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+}
+
+.toggle-password-btn:hover {
+  color: #000000;
+}
+
+.error {
+  color: #f44336;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+button.btn-primary {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #20acf2;
+  border: none;
+  border-radius: 8px;
+  margin-top: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+button.btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .alterar-senha-container {
+    padding: 30px;
+    margin-top: 150px;
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  input[type="password"],
+  input[type="text"],
+  button.btn-primary {
+    font-size: 14px;
+  }
+}
+
+.btn-confirm {
+  background-color: #20acf2 !important;
+  color: white !important;
+  border-radius: 4px;
+  padding: 6px 12px;
+}
+
+.btn-confirm:hover {
+  background-color: #0056b3 !important;
+}
+
+.btn-cancel {
+  background-color: #f44336 !important;
+  color: white !important;
+  border-radius: 4px;
+  padding: 6px 12px;
+}
+
+.btn-cancel:hover {
+  background-color: #b71c1c !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,369 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+nav {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 80px;
+  display: flex;
+  padding: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar.hidden,
+.navBar-2.hidden {
+  transform: translateY(-300%);
+}
+
+.itens {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-img {
+  margin-right: 65px;
+}
+
+.navbar-img img {
+  margin-top: 10px;
+  width: 90px;
+  height: 90px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 35px;
+  margin-left: 10px;
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  color: #20a2f2;
+  text-decoration: none;
+  font-size: 28px;
+  padding: 10px 0px;
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s ease, transform 0.2s ease;
+  transition: 700ms;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #20a2f2;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #157eb3;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.btn-login,
+.btn-cadastro {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 3px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.btn-login {
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 18px;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+  color: #20a2f2;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: 700ms;
+}
+
+.btn-login:hover {
+  transform: scale(1.05);
+}
+
+.btn-cadastro {
+  color: white;
+  background-color: #20a2f2;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 18px;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: 700ms;
+}
+
+.btn-cadastro:hover {
+  background-color: #158bd4;
+  transform: scale(1.05);
+}
+
+/* Círculo do usuário */
+.nav-user {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+/* Dropdown menu*/
+
+.username {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.user-circle img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* Dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: white;
+  color: black;
+  list-style: none;
+  padding: 0.5rem 0;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  z-index: 10;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: 600ms ease;
+}
+
+.dropdown-menu li:hover {
+  background-color: #20a2f2;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  width: 100%;
+  transition: 400ms ease;
+}
+
+.dropdown-menu li a:hover {
+  color: #ffffff;
+}
+
+/* Barra de pesquisa */
+.navBar-2 {
+  background-color: #20a2f2;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+  z-index: 9998;
+}
+
+.search {
+  position: relative;
+}
+
+input.form-control {
+  width: 200px;
+  padding: 10px 30px 10px 10px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: width 0.3s ease-in-out;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+/* Resultados da pesquisa */
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 25px 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.search-results ul {
+  list-style: none;
+  padding: 0;
+}
+
+.search-results li {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.search-results li:hover {
+  background-color: #f0f0f0;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #20a2f2;
+  margin-left: -50px;
+}
+
+.menu-toggle img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .search input {
+    width: 40vh;
+  }
+}
+
+@media (max-width: 670px) {
+  .nav-link {
+    font-size: 18px;
+  }
+
+  .btn-login,
+  .btn-cadastro {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .search input {
+    width: 50vw;
+  }
+
+  .nav-link {
+    font-size: 19px;
+  }
+
+  .btn-login,
+  .btn-cadastro {
+    margin-left: 0;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+
+  .nav-user {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 495px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    padding: 15px;
+    z-index: 1000;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .navbar-links .nav-item {
+    margin: 10px 0;
+  }
+
+  .itens {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 360px) {
+  .search input {
+    width: 60vw;
+  }
+}

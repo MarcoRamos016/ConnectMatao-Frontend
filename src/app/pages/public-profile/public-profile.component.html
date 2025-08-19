@@ -1,0 +1,177 @@
+<div *ngIf="isLoading" class="spinner-container">
+  <mat-spinner diameter="50"></mat-spinner>
+</div>
+<div *ngIf="!isLoading && user" class="profile-container">
+  <div class="profile-header">
+    <div class="profile-image">
+      <img
+        [src]="
+          user.imagem
+            ? 'data:image/jpeg;base64,' + user.imagem
+            : './../../../../../../pngPadrao-NaoLogado.png'
+        "
+        alt="{{ user.nome }}"
+        (click)="openImageModal()"
+        style="cursor: pointer"
+        title="Visualizar imagem"
+      />
+      <img
+        *ngIf="canEditProfile"
+        (click)="openEditImageModal()"
+        class="edit-image-icon"
+        src="../lapis.png"
+        alt="Editar imagem"
+        title="Alterar imagem"
+      />
+    </div>
+
+    <div class="profile-info">
+      <h2>
+        {{ user.nome }}
+        <span
+          *ngIf="isProfilePartner"
+          class="partner-profile-badge"
+          title="Usuário Parceiro Verificado"
+        >
+          <img
+            src="./../../../../../../verificadoParceiro.png"
+            alt="Verificado"
+            class="partner-icon-img"
+          />
+        </span>
+        <img
+          *ngIf="canEditProfile"
+          (click)="openEditNameModal()"
+          class="edit-name-icon"
+          src="../lapis.png"
+          alt="Editar nome"
+          title="Alterar nome"
+        />
+      </h2>
+      <p>E-mail: {{ user.login }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="isEditNameModalOpen" class="modal-overlay">
+    <div class="edit-modal modalConfirm">
+      <h3>Alterar Nome</h3>
+      <form [formGroup]="editForm" (ngSubmit)="updateName()">
+        <input formControlName="nome" placeholder="Novo nome" />
+        <button type="submit" class="enviar" [disabled]="editForm.invalid">
+          Salvar
+        </button>
+        <button type="button" class="cancelar" (click)="closeEditNameModal()">
+          Cancelar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="isEditImageModalOpen" class="modal-overlay">
+    <div class="edit-modal modalConfirm">
+      <h3>Alterar Imagem</h3>
+      <form [formGroup]="editForm" (ngSubmit)="updateImage()">
+        <input
+          type="file"
+          (change)="handleImageUpload($event)"
+          accept="image/*"
+        />
+        <div class="image-preview-container" *ngIf="imagePreviewUrl">
+          <img [src]="imagePreviewUrl" alt="Pré-visualização da imagem" />
+        </div>
+        <button
+          type="submit"
+          class="enviar"
+          [disabled]="!editForm.value.imagem"
+        >
+          Salvar
+        </button>
+        <button type="button" class="cancelar" (click)="closeEditImageModal()">
+          Cancelar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="isImageModalOpen" class="modal-overlay">
+    <div class="image-display-modal">
+      <img
+        [src]="
+          user.imagem
+            ? 'data:image/jpeg;base64,' + user.imagem
+            : './../../../../../../pngPadrao-NaoLogado.png'
+        "
+        alt="{{ user.nome }}"
+      />
+      <button class="close-modal-btn" (click)="closeImageModal()">X</button>
+    </div>
+  </div>
+  <div>
+    <h3 *ngIf="canEditProfile">Meus Eventos</h3>
+    <h3 *ngIf="!canEditProfile">Eventos</h3>
+
+    <ng-container *ngIf="userEvents.length > 0; else semEventos">
+      <div class="event-list">
+        <div *ngFor="let evento of userEvents" class="event-card">
+          <h4>{{ evento.titulo }}</h4>
+          <p class="descricao-evento">{{ evento.descricao }}</p>
+          <p><strong>Data:</strong> {{ evento.data | date : "dd/MM/yyyy" }}</p>
+          <p>
+            <strong>Local:</strong> {{ evento.logradouro }},
+            {{ evento.numero }} -
+            {{ evento.bairro }}
+          </p>
+          <p><strong>Contato:</strong> {{ evento.telefone }}</p>
+          <button
+            mat-raised-button
+            class="button-excluir"
+            *ngIf="canEditProfile"
+            (click)="confirmDeleteEvent(evento)"
+          >
+            Excluir
+          </button>
+          <button
+            mat-raised-button
+            [routerLink]="['/detalhe-evento/', evento.id]"
+          >
+            Detalhes
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #semEventos>
+      <p *ngIf="canEditProfile">Você ainda não publicou nenhum evento.</p>
+      <p *ngIf="!canEditProfile">
+        Este usuário ainda não publicou nenhum evento.
+      </p>
+    </ng-template>
+  </div>
+
+  <div *ngIf="excluirModalAberto" class="delete-modal">
+    <h4>Você tem certeza que deseja excluir este evento?</h4>
+    <p>
+      <strong>{{ eventoParaExcluir.titulo }}</strong>
+    </p>
+    <button class="button-excluir" (click)="deleteEvent()">Sim, Excluir</button>
+    <button mat-raised-button (click)="cancelDeleteEvent()">Cancelar</button>
+  </div>
+
+  <div *ngIf="avaliacoes.length > 0">
+    <h3>Avaliações</h3>
+    <div class="avaliacoes">
+      <div *ngFor="let avaliacao of avaliacoes">
+        <p>
+          Evento: {{ avaliacao.evento?.titulo }} - Nota:
+          {{ avaliacao.tipoEstatistica }}
+        </p>
+      </div>
+    </div>
+    <h4>Média geral: {{ mediaAvaliacoes | number : "1.1-1" }}</h4>
+  </div>
+
+  <div *ngIf="avaliacaoUsuario > 0">
+    <h3>Sua Avaliação</h3>
+    <p>Você avaliou com nota: {{ avaliacaoUsuario }}</p>
+  </div>
+</div>

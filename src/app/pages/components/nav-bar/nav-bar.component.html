@@ -1,0 +1,102 @@
+<nav class="navbar" [class.hidden]="!navbarVisivel">
+  <div class="navbar">
+    <a routerLink="/" class="navbar-img">
+      <img
+        src="./../../../../../../SVGConnectMatao.svg"
+        alt="Logo"
+        class="logo"
+      />
+    </a>
+
+    <button class="menu-toggle" (click)="alternarMenu()">
+      <img src="../Menu_hamburguer.png" alt="" />
+    </button>
+  </div>
+
+  <ul class="navbar-links" [class.active]="menuAberto">
+    <li class="nav-item"><a routerLink="/" class="nav-link">Início</a></li>
+    <li class="nav-item">
+      <a routerLink="/divulgarEvento" class="nav-link">Divulgar Evento</a>
+    </li>
+    <li
+      class="nav-item"
+      *ngIf="
+        estaLogado &&
+        ehPapelParceiro &&
+        !parceiroAprovado &&
+        !formularioParceiroExiste &&
+        statusParceiroCarregado
+      "
+    >
+      <button
+        mat-button
+        class="nav-link"
+        (click)="abrirFormularioParceiroPeloCliqueNaNavbar()"
+      >
+        Cadastro de Parceiro
+      </button>
+    </li>
+    <li class="nav-item" *ngIf="estaLogado && servicoAuth.isAdmin()">
+      <a routerLink="/solicitacoes-parceiros" class="nav-link"
+        >Solicitações Parceiros</a
+      >
+    </li>
+  </ul>
+
+  <div class="itens">
+    <ng-container *ngIf="!estaLogado">
+      <a routerLink="/login" class="btn-login">Login</a>
+      <a routerLink="/cadastre-se" class="btn-cadastro">Cadastre-se</a>
+    </ng-container>
+
+    <div class="nav-user" *ngIf="estaLogado">
+      <div class="user-circle" (click)="alternarDropdown()">
+        <img
+          [src]="urlImagemUsuario"
+          alt="Foto do Usuário"
+          *ngIf="urlImagemUsuario"
+        />
+      </div>
+      <ul class="dropdown-menu" [class.show]="dropdownVisivel">
+        <li class="username">{{ nomeUsuario }}</li>
+        <li><a (click)="irParaPerfil()">Perfil</a></li>
+        <li><a (click)="sair()">Sair</a></li>
+        <li><a routerLink="alterar-senha">Alterar senha</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="navBar-2" [class.hidden]="!navbarVisivel">
+  <div class="search">
+    <input
+      #campoPesquisa
+      type="search"
+      class="form-control"
+      placeholder="Pesquisar eventos"
+      aria-label="Pesquisar eventos"
+      (focus)="aoFocarPesquisa()"
+      (blur)="aoDesfocarPesquisa()"
+      (input)="pesquisar(campoPesquisa.value)"
+    />
+
+    <div
+      *ngIf="
+        pesquisaFocada &&
+        resultadosPesquisa.length > 0 &&
+        campoPesquisa.value.length >= 0
+      "
+      class="search-results"
+    >
+      <ul>
+        <li
+          *ngFor="let evento of resultadosPesquisa"
+          class="search-result-item"
+          (mousedown)="irParaDetalhesEvento(evento.id)"
+        >
+          {{ evento.titulo }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
